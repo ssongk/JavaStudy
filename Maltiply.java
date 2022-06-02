@@ -1,6 +1,6 @@
 import java.util.Scanner;
-
-public class Main {
+// 백준-2588-곱셉
+public class Maltiply {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         int a = s.nextInt();
