@@ -1,3 +1,5 @@
+package Baekjoon;
+
 import java.util.Scanner;
 // 백준-2588-곱셉
 public class Maltiply {
