@@ -1,7 +1,7 @@
 package DisignPattern.Decorator;
 
-public class LineDecorator extends DisplayDecorator {
-    public LineDecorator(Display decoratedDisplay){
+public class LaneDecorator extends DisplayDecorator {
+    public LaneDecorator(Display decoratedDisplay){
         super(decoratedDisplay);
     }
     
