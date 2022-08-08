@@ -1,13 +1,13 @@
 package DataStructure.stack;
 
-public class ArrayStack implements stack{
+public class ArrayStack implements StackInterface{
     private int top;
     private int stackSize;
-    private char stackArr[];
+    private String stackArr[];
     public ArrayStack(int stackSize){
         top = -1;
         this.stackSize = stackSize;
-        stackArr = new char[this.stackSize];
+        stackArr = new String[this.stackSize];
     }
     @Override
     public boolean isEmpty(){
@@ -18,7 +18,7 @@ public class ArrayStack implements stack{
         return (top==this.stackSize-1);
     }
     @Override
-    public void push(char item) {
+    public void push(String item) {
         if(isFull()){
             System.out.println("Stack is full!");
         }
@@ -28,10 +28,10 @@ public class ArrayStack implements stack{
         }
     }
     @Override
-    public char pop() {
+    public String pop() {
         if(isEmpty()){
             System.out.println("Delete task is failed! Stack is empty!");
-            return 0;
+            return null;
         }
         else{
             System.out.println("Deleted item : "+stackArr[top]);
@@ -39,10 +39,10 @@ public class ArrayStack implements stack{
         }
     }
     @Override
-    public char peek() {
+    public String peek() {
         if(isEmpty()){
             System.out.println("Delete task is failed! Stack is empty!");
-            return 0;
+            return null;
         }
         else{
             System.out.println("Peeked item : "+stackArr[top]);
@@ -56,7 +56,7 @@ public class ArrayStack implements stack{
         }
         else{
             top = -1;
-            this.stackArr = new char[this.stackSize];
+            this.stackArr = new String[this.stackSize];
             System.out.println("Stack is clear!");
         }
     }
@@ -65,27 +65,11 @@ public class ArrayStack implements stack{
             System.out.println("Stack is empty!");
         }
         else{
+            System.out.println("<Stack Info>");
             for(int i=top;i>-1;i--){
-                System.out.println(stackArr[i]);
+                System.out.println("---------------");
+                System.out.println(i+"  "+stackArr[i]);
             }
         }
-    }
-    public static void main(String[] args) {
-        int stackSize = 5;
-        ArrayStack arrStack = new ArrayStack(stackSize);
-        arrStack.push('A');
-        arrStack.printStack();
-        arrStack.push('B');
-        arrStack.printStack();
-        arrStack.push('C');
-        arrStack.printStack();
-        arrStack.pop();
-        arrStack.printStack();
-        arrStack.pop();
-        arrStack.printStack();
-        arrStack.peek();
-        arrStack.printStack();
-        arrStack.init();
-        arrStack.printStack();
     }
 }
