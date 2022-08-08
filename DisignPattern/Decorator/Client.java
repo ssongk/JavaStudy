@@ -6,8 +6,8 @@ public class Client {
         road.draw();
         System.out.println();
 
-        Display roadWithLine = new LaneDecorator(new RoadDisplay());
-        roadWithLine.draw();
+        Display roadWithLane = new LaneDecorator(new RoadDisplay());
+        roadWithLane.draw();
         System.out.println();
 
         Display roadWithTraffic = new TrafficDecorator(new RoadDisplay());
