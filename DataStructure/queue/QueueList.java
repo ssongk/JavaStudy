@@ -1,4 +1,4 @@
-package DataStructure.queue;
+package DataStructure.Queue;
 
 public class QueueList implements QueueInterface{
     private int queueLength;

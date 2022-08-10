@@ -1,4 +1,4 @@
-package DataStructure.stack;
+package DataStructure.Stack;
 
 public class ArrayStack implements StackInterface{
     private int top;

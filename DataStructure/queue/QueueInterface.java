@@ -1,4 +1,4 @@
-package DataStructure.queue;
+package DataStructure.Queue;
 
 public interface QueueInterface {
     boolean isEmpty();
