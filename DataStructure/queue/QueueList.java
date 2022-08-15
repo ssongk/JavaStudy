@@ -2,27 +2,29 @@ package DataStructure.Queue;
 
 public class QueueList implements QueueInterface{
     private int queueLength;
-    private int index;
+    private int front;
+    private int rear;
     private String ql[];
     public QueueList(int queueLength){
-        index = -1;
+        front = -1;
+        rear = -1;
         this.queueLength = queueLength;
         ql = new String[queueLength];
     }
     @Override
     public boolean isEmpty() {
-        return (index==-1);
+        return (front==rear);
     }
     @Override
     public boolean isFull() {
-        return (index==queueLength-1);
+        return (rear==queueLength-1);
     }
     @Override
     public void add(String item) {
         if(isFull())
             System.out.println("Queue is full!");
         else{
-            ql[++index] = item;
+            ql[++rear] = item;
             System.out.println(item+" is added in Queue");
         }
     }
@@ -33,9 +35,10 @@ public class QueueList implements QueueInterface{
             return null;
         }
         else{
-            System.out.println(ql[index]+" is deleted in Queue");
-            ql[index] = null;
-            return ql[index--];
+            front++;
+            System.out.println(ql[front]+" is deleted in Queue");
+            ql[front] = null;
+            return ql[front];
         }
     }
     @Override
@@ -45,8 +48,8 @@ public class QueueList implements QueueInterface{
             return null;
         }
         else{
-            System.out.println("peek in the Queue is "+ql[index]);
-            return ql[index];
+            System.out.println("peek in the Queue is "+ql[front+1]);
+            return ql[front+1];
         }
     }
     @Override
@@ -56,11 +59,11 @@ public class QueueList implements QueueInterface{
         else{
             System.out.println("----------------");
             System.out.println("\t<Queue Info>");
-            for(int i=0;i<index+1;i++){
+            for(int i=0;i<rear+1;i++){
                 System.out.print(i+"\t");
             }
             System.out.println();
-            for(int i=0;i<index+1;i++){
+            for(int i=0;i<rear+1;i++){
                 System.out.print(ql[i]+"\t");
             }
             System.out.println();
@@ -72,7 +75,8 @@ public class QueueList implements QueueInterface{
         if(isEmpty())
             System.out.println("Queue is empty!");
         else{
-            index = -1;
+            front = -1;
+            rear = -1;
             this.ql = new String[this.queueLength];
         }
     }

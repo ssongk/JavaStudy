@@ -1,78 +1,109 @@
 package DataStructure.LinkedList;
 
-import java.util.Scanner;
-
 public class LinkedListApp {
-    public static void main(String[] args) {
-        int index = -1;
-        int head = 0;
-        int tail = 0;
-        Scanner s = new Scanner(System.in);
-        System.out.print("List size >> ");
-        int size = s.nextInt();
-        ListNode list[] = new ListNode[size];
-        while(true){
-            System.out.print("1.insert 2.remove 3.print 4.exit >> ");
-            int cmd = s.nextInt();
-            
-            if(cmd==4) break;
-            else if(cmd==1){
-                if(index==size){
-                    System.out.println("List is full!");
-                }
-                else index++;
-
-                System.out.print("insert data >> ");
-                String data = s.next();
-                System.out.print("select link >> ");
-                int link = s.nextInt();
-                list[index] = new ListNode(data, link);
-                list[index].insert(data,link);
+    private ListNode head;
+    public LinkedListApp(){
+        head = null;
+    }
+    public void insertNode(ListNode preNode, String data){
+        ListNode newNode = new ListNode(data);
+        newNode.link = preNode.link;
+        preNode.link = newNode;
+    }
+    public void insertNode(String data){
+        ListNode newNode = new ListNode(data);
+        if(head == null){
+            this.head = newNode;
+        }
+        else{
+            ListNode tempNode = head;
+            while(tempNode.link != null){
+                tempNode = tempNode.link;
             }
-            else if(cmd==2){
-                System.out.print("select data >> ");
-                int num = s.nextInt();
-                if(head==tail){
-                    head = -1;
-                    index = -1;
-                    list[num].remove();
-                }
-                if(num==head){
-                    head = num+1;
-                    list[num].remove();
-                }
-                else if(num==tail){
-                    index--;
-                    tail--;
-                    list[num].remove(list[num-1]);
+            tempNode.link = newNode;
+        }
+    }
+    public void deleteNode(String data){
+        ListNode preNode = head;
+        ListNode tempNode = head.link;
+        if(data.equals(preNode.getData())){
+            head = preNode.link;
+            preNode.link = null;
+        }
+        else{
+            while(tempNode != null){
+                if(data.equals(tempNode.getData())){
+                    if(tempNode.link == null){
+                        preNode.link = null;
+                    }
+                    else{
+                        preNode.link = tempNode.link;
+                        tempNode.link = null;
+                    }
+                    break;
                 }
                 else{
-                    list[num].remove(list[num-1],list[num+1]);
-                }                
+                    preNode = tempNode;
+                    tempNode = tempNode.link;
+                }
             }
-            else if(cmd==3){
-                if(index==-1){
-                    System.out.println("List is null!");
-                }
-                System.out.println("---------------------------------");
-                System.out.println("<Linked List Info>");
-                System.out.print("data(index)");
-                for(int i=0;i<index+1;i++){
-                    if(list[i].isNotEmpty())
-                        System.out.print("\t"+list[i].printData()+"("+i+")");
-                }
-                System.out.println();
-                System.out.print("link\t");
-                for(int i=0;i<index+1;i++){
-                    if(list[i].isLiked())
-                        System.out.print("\t"+list[i].printLink());
-                }
-                System.out.println();
-                System.out.println("---------------------------------");
-
-            }
-            else System.out.println("다시 입력해주세요");
         }
-        s.close();
+    }
+    public void deleteNode(){
+        ListNode preNode;
+        ListNode tempNode;
+        if(head == null){
+            return;
+        }
+        if(head.link == null){
+            head = null;
+        }
+        else{
+            preNode = head;
+            tempNode = head.link;
+                while(tempNode.link != null){
+                    preNode = tempNode;
+                    tempNode = tempNode.link; 
+                }
+            preNode.link = null;
+        }
+    }
+    public ListNode searchNode(String data) {
+        ListNode tempNode = this.head;
+        while(tempNode != null) { 
+            if(data.equals(tempNode.getData())) {
+                return tempNode;
+            }
+            else {
+            tempNode = tempNode.link;
+            }
+        }
+        return tempNode;
+    }
+
+    public void printList() {
+        ListNode tempNode = this.head;
+        while(tempNode != null) {
+            System.out.print(tempNode.getData() + " "); tempNode = tempNode.link;
+        }
+        System.out.println();
+    }
+    public static void main(String args[]) {
+        LinkedListApp linkedList = new LinkedListApp();
+        String str = "wed";
+        linkedList.insertNode("sun");
+        linkedList.insertNode("mon");
+        linkedList.insertNode("tue");
+        linkedList.insertNode("wed");
+        linkedList.insertNode("thu");
+        linkedList.insertNode("fri");
+        linkedList.insertNode("sat");
+        linkedList.printList();
+        System.out.println(linkedList.searchNode(str).getData());
+        linkedList.deleteNode(linkedList.searchNode(str).getData());
+        linkedList.printList();
+        str = "sun";
+        linkedList.deleteNode(linkedList.searchNode(str).getData());
+        linkedList.printList();
     }
 }
