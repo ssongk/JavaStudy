@@ -105,5 +105,8 @@ public class LinkedListApp {
         str = "sun";
         linkedList.deleteNode(linkedList.searchNode(str).getData());
         linkedList.printList();
+        linkedList.deleteNode();
+        linkedList.insertNode(linkedList.searchNode("mon"),"fri");
+        linkedList.printList();
     }
 }
