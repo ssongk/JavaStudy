@@ -1,4 +1,4 @@
-package singlebungle;
+package singlebungle1;
 
 class Solution2 {
     public static long solution(int price, int money, int count) {

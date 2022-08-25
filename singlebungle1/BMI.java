@@ -1,4 +1,4 @@
-package singlebungle;
+package singlebungle1;
 
 class Health {
     String name; // 이름
@@ -25,15 +25,9 @@ class HealthRate extends Health {
         // * 비만도 : B(%) = (W-SW)/SW*100
         // * 비만도 계산 | ~10% 이내 : 정상 | 10%~20% 이내 : 과체중 | 20%~: 비만
         double b = (weight-standardHealth())/standardHealth() * 100;
-        if(b<10){
-            return "정상";
-        }
-        else if(b<20){
-            return "과체중";
-        }
-        else{
-            return "비만";
-        }
+        if(b<10) {return "정상";}
+        else if(b<20) {return "과체중";}
+        else {return "비만";}
     }
     @Override
     public void prn() {

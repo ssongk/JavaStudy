@@ -1,4 +1,4 @@
-package singlebungle;
+package singlebungle1;
 
 class Student {
     String name;
