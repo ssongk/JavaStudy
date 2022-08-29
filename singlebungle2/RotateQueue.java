@@ -32,16 +32,41 @@ public class RotateQueue{
             System.out.print(l[i]+" ");
         }
         int sum = 0;
-        int offset = 0;
+        int offset1 = 1;
+        int offset2 = 1;
         for(int i=0;i<l.length;i++){
-            if(Math.abs(l[i] - offset)>Math.abs(offset-l[i])){
-                sum += Math.abs(l[i] - offset);
-                offset = l[i];
+            int distance1 = 0;
+            int distance2 = 0;
+            while(true){
+                if(offset1==l[i]){
+                    break;
+                }
+                else{
+                    distance1++;
+                    offset1++;
+                }
+                if(offset1>=n){
+                    offset1 %= n;
+                }
             }
-            else{
-                sum += Math.abs(offset-l[i]);
-                offset = l[i];
+            while(true){
+                if(offset2==l[i]){
+                    break;
+                }
+                else{
+                    distance2--;
+                    offset2--;
+                }
+                if(offset2<=1){
+                    offset1 = n;
+                }
             }
+            if(distance1>distance2)
+                sum += distance1;
+            else
+                sum += distance2;
+            offset1 = l[i];
+            offset2 = l[i];
         }
         System.out.println();
         System.out.println(sum);
